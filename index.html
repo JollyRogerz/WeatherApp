@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Weather Application</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://unpkg.com/arweave/bundles/web.bundle.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="search">
+                <input type="text" placeholder="Enter City Name" id="search-txt" /><a id="search-btn" href="#"><i class="fas fa-search"></i
+          ></a>
+            </div>
+        </header>
+        <main id="main">
+            <div class="city-icon">
+                <div class="city-icon-holder">
+                    <div id="city-name"></div>
+                    <img src="" alt="" id="icon" />
+                </div>
+            </div>
+            <div class="temperature">
+                <div id="temp"></div>
+            </div>
+            <div class="humidity">
+                <div id="humidity-div"></div>
+            </div>
+        </main>
+        <div id="buttons">
+            <button id="login" class=button type="button">Login !</button>
+            <button id="save" type="button" onclick="alert('Temperature saved to Blockchain')">Save to Blockchain!</button>
+
+        </div>
+        <!-- The Modal -->
+        <div id="Login" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p>Drop Keyfile to Login..</p>
+                <div class="file-input">
+                    <input type="file" id="file" onchange="login(this.files)">
+                </div>
+            </div>
+
+        </div>
+
+        <script>
+            // Get the modal
+            var modal = document.getElementById("Login");
+
+            // Get the button that opens the modal
+            var btn = document.getElementById("login");
+
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+
+            // When the user clicks the button, open the modal 
+            btn.onclick = function() {
+                modal.style.display = "block";
+            }
+
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        </script>
+
+    </div>
+
+
+
+    <script src="https://use.fontawesome.com/releases/v5.0.13/js/all.js "></script>
+    <script src="index.js "></script>
+    <script src="login.js "></script>
+    <script>
+        const arweave = Arweave.init({
+            host: 'arweave.net',
+            port: 443,
+            protocol: 'https',
+            timeout: 20000,
+            logging: false,
+        });
+        arweave.network.getInfo().then(console.log);
+    </script>
+
+
+</body>
+
+</html>t

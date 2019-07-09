@@ -8,15 +8,13 @@ function login(files) {
                 console.log(`Arweave wallet address: ${address}`)
 
 
-                arweave.wallets.getBalance(wallet).then((balance) => {
+                arweave.wallets.getBalance(address).then((balance) => {
                     let winston = balance;
                     let ar = arweave.ar.winstonToAr(balance);
 
                     console.log(winston);
-                    //125213858712
 
                     console.log(ar);
-                    //0.125213858712
                 });
             });
 

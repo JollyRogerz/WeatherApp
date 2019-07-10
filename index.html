@@ -33,7 +33,7 @@
         </main>
         <div id="buttons">
             <button id="login" class=button type="button">Login !</button>
-            <button id="save" type="button" onclick="alert('Temperature saved to Blockchain')">Save to Blockchain!</button>
+            <button id="save" type="button" onclick=" save_weather">Save to Blockchain!</button>
 
         </div>
         <!-- The Modal -->
@@ -85,6 +85,7 @@
     <script src="https://use.fontawesome.com/releases/v5.0.13/js/all.js "></script>
     <script src="index.js"></script>
     <script src="login.js"></script>
+    <script src="save.js"></script>
     <script>
         const arweave = Arweave.init({
             host: 'arweave.net',

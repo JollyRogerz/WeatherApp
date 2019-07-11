@@ -6,7 +6,9 @@ let cityName = document.getElementById("city-name");
 let icon = document.getElementById("icon");
 let temperature = document.getElementById("temp");
 let humidity = document.getElementById("humidity-div");
+let save = document.getElementById("save");
 
+save.addEventListener("click", saveWeather);
 searchButton.addEventListener("click", findWeatherDetails);
 searchInput.addEventListener("keyup", enterPressed);
 
@@ -25,11 +27,50 @@ function findWeatherDetails() {
     }
 }
 
+function saveWeather()
+    {
+        var obj = { city : searchInput.value,
+                    temperature : temperature.innerHTML,
+                    humidity : humidity.innerHTML
+                  };
+
+    localStorage.setItem('myObj', JSON.stringify(obj));
+
+    (async () => {
+
+
+        var weatherTimeUnix = Math.round((new Date()).getTime() / 1000)
+
+        var tx =
+            await arweave.createTransaction(
+            {
+                data: JSON.stringify(obj),
+            },
+                wallet,
+        )
+
+        tx.addTag('App-Name', 'WeatherApp')
+        tx.addTag('App-Version', '0.0.1')
+        tx.addTag('Unix-Time', weatherTimeUnix)
+        await arweave.transactions.sign(tx, wallet)
+        console.log(tx.id)
+        console.log(tx.data)
+        await arweave.transactions.post(tx)
+        alert('Weather Saved')
+
+    })()
+}
+
+function change()
+{
+    
+}
+
 function theResponse(response) {
     let jsonObject = JSON.parse(response);
     cityName.innerHTML = jsonObject.name;
     icon.src = "http://openweathermap.org/img/w/" + jsonObject.weather[0].icon + ".png";
-    temperature.innerHTML = parseInt(jsonObject.main.temp - 273) + "°";
+    temperature.innerHTML = parseInt(jsonObject.main.temp - 273) + "°C";
     humidity.innerHTML = jsonObject.main.humidity + "%";
 }
 

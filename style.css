@@ -55,6 +55,13 @@ button:hover {
     text-align: center;
 }
 
+.file-input {
+    width: 100%;
+}
+.close{
+    cursor: pointer;
+}
+
 #city-name {
     font-family: "Courier New";
     font-size: 30px;
@@ -131,15 +138,19 @@ button:hover {
 }
 
 .modal-content {
+    display: flex;
+    flex-wrap: wrap;
     background: #64f38c;
     background-size: 400% 400%;
     margin: auto;
     padding: 20px;
     width: 80%;
+    height: 15%;
+    min-height: 200px;
     color: rgb(0, 0, 0);
     font-family: "Courier New";
     font-weight: 100;
-    font-size: 4vw;
+    font-size: 2vw;
     -webkit-animation: Gradient 15s ease infinite;
     -moz-animation: Gradient 15s ease infinite;
     animation: Gradient 15s ease infinite;

@@ -1,11 +1,15 @@
 function login(files) {
     const fr = new FileReader()
-    fr.onload = function(ev) {
+    fr.onload = function (ev) {
         try {
-            const wallet = JSON.parse(ev.target.result);
+             wallet = JSON.parse(ev.target.result);
 
             arweave.wallets.jwkToAddress(wallet).then((address) => {
                 console.log(`Arweave wallet address: ${address}`)
+
+                
+                document.getElementById("login").textContent = "Logged In";
+                
 
 
                 arweave.wallets.getBalance(address).then((balance) => {
@@ -15,12 +19,15 @@ function login(files) {
                     console.log(winston);
 
                     console.log(ar);
+
+                    document.getElementById("dropzone").innerHTML = address + "<br><b>Balance:</b> " + ar + " <b>AR Tokens</b>";
                 });
             });
 
         } catch (err) {
             console.log('Error logging in: ', err);
         }
+        
 
     };
 

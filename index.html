@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8" />
     <title>Weather Application</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" />
     <link rel="stylesheet" href="style.css" />
     <script src="https://unpkg.com/arweave/bundles/web.bundle.js"></script>
+    <script src="https://unpkg.com/arweave/bundles/web.bundle.min.js"></script>
 </head>
 
 <body>
@@ -33,7 +33,7 @@
         </main>
         <div id="buttons">
             <button id="login" class=button type="button">Login !</button>
-            <button id="save" type="button" onclick=" save_weather">Save to Blockchain!</button>
+            <button id="save" type="button" >Save to Blockchain !</button>
 
         </div>
         <!-- The Modal -->
@@ -42,7 +42,7 @@
             <!-- Modal content -->
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <p>Drop Keyfile to Login..</p>
+                <p id ="dropzone">Drop Keyfile to Login..</p>
                 <div class="file-input">
                     <input type="file" id="file" onchange="login(this.files)">
                 </div>
@@ -87,15 +87,17 @@
     <script src="login.js"></script>
     <script src="save.js"></script>
     <script>
-        const arweave = Arweave.init({
-            host: 'arweave.net',
-            port: 443,
-            protocol: 'https',
-            timeout: 20000,
-            logging: false,
-        });
-        arweave.network.getInfo().then(console.log);
-    </script>
+    var wallet = {};
+    //var address = {};
+    var arweave = Arweave.init({
+        host: 'arweave.net',
+        port: 443,
+        protocol: 'https',
+        timeout: 20000,
+        logging: false,
+    });
+    arweave.network.getInfo().then(console.log);
+</script>
 
 
 </body>
